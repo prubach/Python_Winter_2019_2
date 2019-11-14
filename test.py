@@ -6,3 +6,5 @@ d['k3'] = 'Python'
 print()
 for i in d.keys():
     print(d.get(i))
+
+print('test')
