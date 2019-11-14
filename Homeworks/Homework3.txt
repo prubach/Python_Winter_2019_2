@@ -1,0 +1,14 @@
+1. Please download a CSV file containing the stock history of some companies, for example:
+http://finance.yahoo.com/q/hp?s=GOOG
+http://finance.yahoo.com/q/hp?s=IBM
+http://finance.yahoo.com/q/hp?s=MSFT
+
+(Download Data)
+Save files giving them different names to a location on your drive
+
+2. Write a program that searches for CSV files with stock rates in a given folder and for every one of them:
+
+3. Calculates the percentage change betweeen Close and Open price and adds these values as another column to this CSV file.
+You can replace the old file or create a new one.
+
+Change = (Close-Open)/Open
