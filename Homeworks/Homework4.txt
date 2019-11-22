@@ -1,0 +1,2 @@
+Please write a program that for a given folder calculates the total space that it occupies including all files and
+subfolders that it contains. Hint: use recursion to simplify code.
