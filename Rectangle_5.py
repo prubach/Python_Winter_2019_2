@@ -11,7 +11,7 @@ class Rectangle:
 
     @classmethod
     def how_many(cls):
-        print("We have {0} rectangles".format(Rectangle.num_rect))
+        print("We have {0} rectangles".format(cls.num_rect))
 
     def set_params(self, a, b):
         self.a = a
@@ -26,7 +26,7 @@ class Rectangle:
     def __str__(self):
         return "Rect: {0} by {1}".format(self.a, self.b)
 
-r1 = Rectangle(2, 4)
+r1 = Rectangle('2', 'abca')
 r2 = Rectangle(3, 5)
 r3 = Rectangle(1, 2)
 r1.how_many()
