@@ -1,0 +1,5 @@
+Please use the latest (Shapes_abstract) structures and extend it by:
+1. adding a Triangle and EquilateralTriangle
+2. adding perimeter calculation to every structure
+3. adding a Square that inherits from Rectangle and uses its calc_surface implementation
+4. providing some code that tests the new functionality and structures

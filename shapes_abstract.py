@@ -1,7 +1,13 @@
 import math
-class Shape:
+
+from abc import ABC, abstractmethod
+class Shape(ABC):
     def __init__(self, a=8, b=9):
         self.set_params(a, b)
+
+    @abstractmethod
+    def calc_surface(self):
+        pass
 
     def set_params(self, a, b):
         self._a = a
@@ -32,20 +38,14 @@ class Circle(Shape):
     def __repr__(self):
         return self.__class__.__name__ + "[r=" + str(self._a) + "] at " + str(hex(id(self)))
 
-class HybridShape(Rectangle, Circle):
-    pass
-
-h1 = HybridShape(10)
-print(h1)
-print(h1.calc_surface())
-
-s = Shape(45, 56)
+# not possible because it is an abstract class
+#s = Shape(45, 56)
 r1 = Rectangle(4, 6)
 print(r1)
 print(r1.calc_surface())
 c1 = Circle(5)
 print(c1)
-print(c1.calc_surface())
+#print(c1.calc_surface())
 
 
 # print(r1.calc_surface())
