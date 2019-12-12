@@ -1,0 +1,6 @@
+Please extend the Account class located in Bank by adding the history of transactions.
+Entries should be added to the history everytime the "deposit", "charge" or "calc_interest" methods are called and
+should contain the operation type (same as method name), the parameter value (amount), the balance after the operation
+and date and time automatically taken from the operating system.
+You may implement it as just a list of string entries, however, a preferred way would be to create a separate class as
+a template for each Operation entry.
