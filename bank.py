@@ -25,9 +25,9 @@ class Account:
             raise BankException('Negative amount')
     def charge(self, amount):
         if amount < 0:
-            raise NegativeAmountException()
+            raise NegativeAmountException("amount=" + str(amount))
         if amount > self._balance:
-            raise NotEnoughMoneyException()
+            raise NotEnoughMoneyException("balance is only: " + str(self._balance))
         self._balance -= amount
     def calc_interest(self):
         self._balance += self._balance * self.interest_rate
@@ -52,12 +52,14 @@ print(a1)
 try:
     a1.deposit(100)
     print(a1)
-    a1.charge(150)
-except NotEnoughMoneyException as ne:
-    print("Not enough money")
+    a1.charge(-150)
+except BankException as ne:
+    print("Bank exception...")
+    #print("Not enough money")
     print(ne)
+    exit(0)
 except NegativeAmountException as na:
-    print("not enough money")
+    print("Negative amount")
     print(na)
 #except BankException as be:
     #print('Error: ' + str(be))
