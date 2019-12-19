@@ -15,3 +15,6 @@ source venv/bin/activate
 or
 pip3 install django
 7. django-admin startproject bank
+8. cd bank
+9. python manage.py runserver
+10. python manage.py startapp bankapp
