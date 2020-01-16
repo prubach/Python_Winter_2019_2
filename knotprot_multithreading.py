@@ -1,6 +1,8 @@
 from knotprot_download import get_proteins, setup_download_dir, download_link, time_it
 from threading import Thread
 from queue import Queue
+from multiprocessing.pool import Pool
+from functools import partial
 
 def run_single_thread(dir):
     proteins = get_proteins()
@@ -37,7 +39,20 @@ def run_workers(dir):
         queue.put((dir, p))
     queue.join()
 
+#####
 
-dir = setup_download_dir()
-#time_it(run_single_thread, dir)
-time_it(run_workers, dir)
+#### Using Multiprocessing ####
+
+def run_multi_thread(dir):
+    proteins = get_proteins()
+    #print(len(proteins))
+    #print(proteins)
+    download = partial(download_link, dir)
+    with Pool(4) as p:
+        p.map(download, proteins)
+
+if __name__ == '__main__':
+    dir = setup_download_dir()
+    #time_it(run_single_thread, dir)
+    #time_it(run_workers, dir)
+    time_it(run_multi_thread, dir)
