@@ -1,8 +1,11 @@
-from knotprot_download import get_proteins, setup_download_dir, download_link, time_it
+from pathlib import Path
+
+from knotprot_download import get_proteins, setup_download_dir, download_link, time_it, create_thumbnail
 from threading import Thread
 from queue import Queue
 from multiprocessing.pool import Pool
 from functools import partial
+from concurrent.futures import ProcessPoolExecutor
 
 def run_single_thread(dir):
     proteins = get_proteins()
@@ -51,8 +54,27 @@ def run_multi_thread(dir):
     with Pool(4) as p:
         p.map(download, proteins)
 
+##### Create thumbnails ###
+def create_thumbnails_single_thread(dir):
+    for f in Path(dir).iterdir():
+        create_thumbnail((160, 160), f)
+
+##### Create thumbnails in parallel ###
+def create_thumbnails_process_pool(dir):
+    run_thumbnail = partial(create_thumbnail, (160, 160))
+    with ProcessPoolExecutor() as executor:
+        executor.map(run_thumbnail, Path(dir).iterdir())
+
+
 if __name__ == '__main__':
     dir = setup_download_dir()
-    #time_it(run_single_thread, dir)
+    print('Run in single thread')
+    time_it(run_single_thread, dir)
+    print('Now creating thumbnails')
+    time_it(create_thumbnails_single_thread, dir)
+    dir = setup_download_dir()
+    print('MULTIPLE THREADS')
     #time_it(run_workers, dir)
     time_it(run_multi_thread, dir)
+    print('Now creating thumbnails')
+    time_it(create_thumbnails_process_pool, dir)
