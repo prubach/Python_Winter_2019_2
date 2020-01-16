@@ -8,6 +8,7 @@ class myThread(Thread):
         self.name = name
         self.counter = counter
         self.delay = delay
+        self.shared_list = shared_list
     def run(self):
         print('Starting: ' + self.name)
         while self.counter:
@@ -22,4 +23,10 @@ thread1 = myThread(1, "Thread 1", 5, 1, shared_list)
 thread2 = myThread(2, "Thread 2", 4, 2, shared_list)
 thread1.start()
 thread2.start()
+# Wait for thread 2 to finish
+all_threads = [thread1, thread2]
+for t in all_threads:
+    t.join()
+print('Shared list:')
+print(shared_list)
 print('Exiting main thread')
