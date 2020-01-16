@@ -1,5 +1,6 @@
 from threading import Thread
 import time
+import multiprocessing
 
 class myThread(Thread):
     def __init__(self, threadId, name, counter, delay, shared_list):
@@ -18,6 +19,8 @@ class myThread(Thread):
             self.counter-=1
         print('Exiting: ' + self.name)
 
+print('CPUs:')
+print(multiprocessing.cpu_count())
 shared_list = []
 thread1 = myThread(1, "Thread 1", 5, 1, shared_list)
 thread2 = myThread(2, "Thread 2", 4, 2, shared_list)
